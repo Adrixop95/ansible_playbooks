@@ -1,18 +1,20 @@
 # Ansible playbooks
 
-Zbiór różnych playbooków do Ansible.
+Zbiór różnych playbooków do Ansible.  
 Zostały one napisane aby przypomnieć sobie jak używa się Ansible oraz aby zautomatyzować trochę pracę serwerów i stanowisk z Ubuntu GNU/Linux.
 
-### Instalacja 
+## Instalacja 
 
-Instalacja Ansible na hoście:
+Instalacja Ansible na masterze:  
+(przykład instalacji na Ubuntu GNU/Linux)
 ```
 sudo apt-add-repository -y ppa:ansible/ansible
 sudo apt-get update
 sudo apt-get install ansible -y
 ```
 
-Wymagane pliki do wykonania Ansible playbooks na maszynach:
+Wymagane pakiety do wykonania Ansible playbooks na slaves:  
+(przykład instalacji dla Ubuntu GNU/Linux)
 ```
 sudo apt-get install python2.7 python-pip aptitude -y
 sudo pip install virtualenv -U
@@ -39,10 +41,9 @@ Do działania Ansible wymagany jest plik hosts posiadający w sobie zbiór adres
 
 ```
 
-### Przydane komendy Ansible
+## Przykładowe komendy Ansible
 
-Ping urządzeń w pliku host:
-
++ Ping urządzeń w pliku host:  
 ansible -i hosts (lokalizacja pliku hosts) web (dany zbiór adresów) -m ping --ask-password
 ```
 adrox@MSI-Adrox:/mnt/c/Users/Adrox/GitHub/ansible_playbooks/ubuntu_books$ ansible -i hosts web -m ping --ask-pass
@@ -54,7 +55,7 @@ SSH password:
 }
 ```
 
-Wywołanie pliku .yml (ansible playbook):
++ Wywołanie pliku .yml (ansible playbook):  
 ansible-playbook -i hosts (lokalizacja pliku hosts) plik.yml (playbook jaki chcemy wykonać) (dodatkowe paramentry, np. --ask-sudo-pass aby podać hasło superusers)
 
 ```
@@ -75,3 +76,9 @@ ok: [192.168.56.102]
 PLAY RECAP *************************************************************************************************************
 192.168.56.102             : ok=2    changed=0    unreachable=0    failed=0
 ```
+
+## Lista playbooków:
+
++ update_ubuntu.yml ▶ Aktualizacja systemu
++ install_packages_example.yml ▶ Przykładowy skrypt instalujący pakiety
++ ubuntu_nginx.yml ▶ Instalacja nginx na Ubuntu GNU/Linux
