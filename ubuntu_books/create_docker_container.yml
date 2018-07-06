@@ -1,0 +1,15 @@
+---
+  - hosts: docker
+    become: true
+    become_user: root
+    become_method: sudo
+
+    tasks: 
+      - name: Download Ubuntu Docker container
+        docker_image:
+          name: ubuntu
+
+      - name: Run Docker container
+        docker_container:
+          name: ubuntu_container
+          image: ubuntu

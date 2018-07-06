@@ -82,3 +82,4 @@ PLAY RECAP *********************************************************************
 + update_ubuntu.yml ▶ Aktualizacja systemu
 + install_packages_example.yml ▶ Przykładowy skrypt instalujący pakiety
 + ubuntu_nginx.yml ▶ Instalacja nginx na Ubuntu GNU/Linux
++ install_docker_ubuntu.yml ▶ Instalacja docker na Ubuntu GNU/Linux
