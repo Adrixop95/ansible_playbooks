@@ -1,0 +1,8 @@
+---
+- hosts: web
+  tasks:
+    - name: Install OS update
+      become: true
+      apt:
+        update_cache: yes
+        upgrade: full

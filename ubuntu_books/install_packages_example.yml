@@ -1,0 +1,17 @@
+---
+- hosts: web
+  tasks: 
+    - name: Run the equivalent of apt-get update.
+      become: true
+      apt: 
+        update_cache: yes
+
+    - name: Installing packages and applications.
+      become: true
+      apt: name={{item}} state=latest
+      with_items:
+        - npm
+        - vim
+        - nano
+        - git
+        - nmap
