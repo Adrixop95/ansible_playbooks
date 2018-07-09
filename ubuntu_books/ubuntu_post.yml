@@ -1,0 +1,59 @@
+---
+- hosts: ubuntudesktop
+  become: true
+  become_user: root
+  become_method: sudo
+
+  tasks: 
+    - name: Install OS update.
+      become: true
+      apt:
+        update_cache: yes
+        upgrade: full
+
+    - name: Add spotify apt key.
+      apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=0DF731E45CE24F27EEEB1450EFDC8610341D9410 state=present
+
+    - name: Add spotify repository.
+      apt_repository:
+        repo: deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+    - name: Add qbittorrent repo.
+      apt_repository:
+        repo: ppa:qbittorrent-team/qbittorrent-stable
+
+    - name: Installing applications.
+      become: true
+      apt: name={{item}} state=latest
+      with_items:
+        - ubuntu-restricted-addons
+        - ubuntu-restricted-extras
+        - software-properties-common
+        - spotify-client
+        - git
+        - vim
+        - nano
+        - htop
+        - vlc
+        - clang
+        - redshift
+        - redshift-gtk
+        - virtualbox
+        - neofetch
+        - steam
+        - nmap
+        - net-tools
+        - openjdk-11-jre
+        - openjdk-11-jdk
+        - thunderbird
+        - unrar
+        - unzip
+        - qbittorrent
+
+    - name: Installing deb packages from internet.
+      become: true
+      apt: deb={{item}}
+      with_items:
+        - https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        - https://dl.discordapp.net/apps/linux/0.0.5/discord-0.0.5.deb
+        - https://az764295.vo.msecnd.net/stable/0f080e5267e829de46638128001aeb7ca2d6d50e/code_1.25.0-1530796411_amd64.deb
